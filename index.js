@@ -1,1 +1,1 @@
-module.exports = require('./lib/gcloud-datastore.js');
+module.exports = require('./lib/gcloud-datastore');
