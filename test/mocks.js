@@ -2,7 +2,7 @@ var nock = require('nock');
 
 var exports = module.exports = {};
 
-var PROJECT_ID = 'fakeProject';
+var PROJECT_ID = 'central-station-staging';
 
 exports.cleanMocks = function() {
   nock.cleanAll();
@@ -102,3 +102,24 @@ exports.mockFindUser1 = function() {
     'accept-ranges': 'none',
     connection: 'close' });
 };
+
+///// MOCK DESTROY ALL USERS /////
+exports.mockDestroyUser1 = function() {
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .reply(200, "\n\u0006\b\u0001\"\u0000(\u0002", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Mon, 21 Mar 2016 17:46:45 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
