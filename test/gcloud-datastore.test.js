@@ -23,14 +23,10 @@ describe('gcloud datastore connector', function() {
     });
   });
   
-  beforeEach(function (done) {
-    User.destroyAll(function () {
-      done();
-    });
+  beforeEach(function () {
   });
   
   afterEach(function() {
-    mocks.cleanMocks();
   });
   
   ///// ACL TESTS /////
@@ -63,6 +59,7 @@ describe('gcloud datastore connector', function() {
         ]}};
 
       ACL.find(propertyFilter,function(err, result) { 
+        console.log("Stringify: "+JSON.stringify(result));
         assert.isUndefined(err, 'there was no error');
         assert.lengthOf(result, 0, 'Empty result set');
 
@@ -71,36 +68,72 @@ describe('gcloud datastore connector', function() {
     });
     
   });
-  
   ///// USER TESTS /////
   describe('For User', function() {
-    mocks.mockLogin();
-    mocks.mockCreateSuccess();
-    mocks.mockFindUser1();
+    describe("when creating a new one", function() {
+      mocks.mockLogin();
+      mocks.mockLogin();
+      mocks.mockCreateSuccess();
+      mocks.mockFindUser1();
+      
+      it('should create a new user', function(done) {
+        var user1 = {
+          name: "Juan Pablo",
+          email: "jpdiazvaz@mcplusa.com",
+          age: 25
+        };
+        User.create(user1, function(err, result) {
+          assert.isNull(err, 'there was no error');
+          console.log("Result: "+JSON.stringify(result));
+          console.log("Result id: "+result.id);
+
+          User.findById(result.id, function(err, result) {
+            assert.isUndefined(err, 'there was no error');
+
+            assert.equal(result.name, user1.name, "user name got added correctly");
+            assert.equal(result.email, user1.email, "user email got added correctly");
+            assert.equal(result.age, user1.age, "user age got added correctly");
+
+            console.log("User result: "+JSON.stringify(result) + " err: "+err);
+            done();
+          });
+        });
+      });
+      
+    });
     
-    it('should create a new user', function(done) {
-      var user1 = {
-        name: "Juan Pablo",
-        email: "jpdiazvaz@mcplusa.com",
-        age: 25
-      };
-      User.create(user1, function(err, result) {
-        assert.isNull(err, 'there was no error');
-        console.log("Result: "+JSON.stringify(result));
-        console.log("Result id: "+result.id);
+    describe("when creating multiple users", function() {
+      mocks.mockLogin();
+      mocks.mockLogin();
+      mocks.mockLogin();
+      mocks.mockCreateSuccess();
+      mocks.mockCreateSuccess();
+      
+      it('should successfully create all of them', function(done) {
+        console.log(require('../lib/gcloud-datastore.js').dataset);
 
-        User.findById(result.id, function(err, result) {
-          assert.isUndefined(err, 'there was no error');
-          
-          assert.equal(result.name, user1.name, "user name got added correctly");
-          assert.equal(result.email, user1.email, "user email got added correctly");
-          assert.equal(result.age, user1.age, "user age got added correctly");
+        var user1 = {
+          name: "Juan Pablo",
+          email: "jpdiazvaz@mcplusa.com",
+          age: 25
+        };
+        var user2 = {
+          name: "Michael Cizmar",
+          email: "michaelcizmar@mcplusa.com",
+          age: 24
+        };
+        User.create(user1, function(err, result) {
+          assert.isNull(err, 'there was no error');
+          assert.equal(result.name, user1.name);
 
-          console.log("User result: "+JSON.stringify(result) + " err: "+err);
-          done();
+          User.create(user2, function(err, result) {
+            assert.isNull(err, 'there was no error');
+            assert.equal(result.name, user2.name);
+            done();
+          });
         });
       });
     });
-    
+   
   });
 });
