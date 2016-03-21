@@ -2,12 +2,23 @@ var nock = require('nock');
 
 var exports = module.exports = {};
 
+var PROJECT_ID = 'fakeProject';
+
 exports.cleanMocks = function() {
   nock.cleanAll();
 };
 
+exports.disableNetConnect = function() {
+  nock.disableNetConnect();
+};
+
+exports.start = function() {
+  nock.cleanAll();
+  nock.disableNetConnect();
+};
+
 ///// MOCK LOGIN /////
-exports.mockLogin = function() {
+exports.mockLogin = function() {  
   nock('https://accounts.google.com:443', {"encodedQueryParams":true})
   .post('/o/oauth2/token')
   .reply(200, {"access_token":"ya29.qQL1X9bKpDz2rc-uspPBeQZ-BN55cy5fp4CJwO7-g18yBdtoNc5S7gyGCZ2XJUPrbWE","token_type":"Bearer","expires_in":3600}, { 'content-type': 'application/json; charset=utf-8',
@@ -32,7 +43,7 @@ exports.mockLogin = function() {
 ///// MOCK EMPTY FIND /////
 exports.mockFindEmpty = function() {
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .post('/datastore/v1beta2/datasets/'+PROJECT_ID+'/runQuery')
     .reply(200, "\n\u0006\b\u0001\"\u0000(\u0002", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
@@ -53,7 +64,7 @@ exports.mockFindEmpty = function() {
 ///// MOCK CREATE SUCCESS /////
 exports.mockCreateSuccess = function() {
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125722550a0812060a045573657212170a046e616d65220f8a010a4a75616e205061626c6f780112230a05656d61696c221a8a01156a706469617a76617a406d63706c7573612e636f6d7801120b0a036167652204101978012802")
+    .post('/datastore/v1beta2/datasets/'+PROJECT_ID+'/commit')
     .reply(200, "0a320807122e0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120f0a04557365721080808080eddb8b0a", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
@@ -69,12 +80,12 @@ exports.mockCreateSuccess = function() {
     'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
     'accept-ranges': 'none',
     connection: 'close' });
-}
+};
 
 ///// MOCK FIND USER /////
 exports.mockFindUser1 = function() {
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "0a001a361a060a0455736572222a0a280801122412220a0912075f5f6b65795f5f10051a132a11120f0a04557365721080808080f8898c0a5801")
+    .post('/datastore/v1beta2/datasets/'+PROJECT_ID+'/runQuery')
     .reply(200, "0ab501080112770a750a2e0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120f0a04557365721080808080f8898c0a12150a046e616d65220d8a010a4a75616e205061626c6f12210a05656d61696c22188a01156a706469617a76617a406d63706c7573612e636f6d12090a036167652202101922360a34122e6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772110b1204557365721880808080f8898c0a0c180020002802", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
@@ -90,5 +101,4 @@ exports.mockFindUser1 = function() {
     'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
     'accept-ranges': 'none',
     connection: 'close' });
-
 };
