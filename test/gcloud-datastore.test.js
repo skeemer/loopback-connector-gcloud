@@ -110,8 +110,6 @@ describe('gcloud datastore connector', function() {
       mocks.mockCreateSuccess();
       
       it('should successfully create all of them', function(done) {
-        console.log(require('../lib/gcloud-datastore.js').dataset);
-
         var user1 = {
           name: "Juan Pablo",
           email: "jpdiazvaz@mcplusa.com",
@@ -130,6 +128,76 @@ describe('gcloud datastore connector', function() {
             assert.isNull(err, 'there was no error');
             assert.equal(result.name, user2.name);
             done();
+          });
+        });
+      });
+    });
+    
+    // FAILING: Update method not defined in the Connector
+    describe.skip("when updating a user email", function() {
+      mocks.mockLogin();
+      mocks.mockCreateSuccess();
+      
+      it('should successfully create all of them', function(done) {
+
+        var user1 = {
+          name: "Juan Pablo",
+          email: "jpdiazvaz@mcplusa.com",
+          age: 25
+        };
+        User.create(user1, function(err, result) {
+          assert.isNull(err, 'there was no error');
+          assert.equal(result.name, user1.name);
+          
+          User.updateAll({id: result.id}, {email: 'jpdiazvaz@mcplusa.cl'}, function(err, result) {
+            console.log("Result: "+JSON.stringify(result));
+            assert.equal(result.email, 'jpdiazvaz@mcplusa.cl');
+            
+            done();
+          });
+        });
+      });
+    });
+    
+    describe("when deleting one user", function() {
+      mocks.mockLogin();
+      mocks.mockLogin();
+      mocks.mockLogin();
+      mocks.mockCreateSuccess();
+      mocks.mockFindUser1();
+      mocks.mockDestroyUser1();
+      mocks.mockFindEmpty();
+      
+      it('should return an empty set', function(done) {
+
+        var user1 = {
+          name: "Juan Pablo",
+          email: "jpdiazvaz@mcplusa.com",
+          age: 25
+        };
+        
+        var id;
+        User.create(user1, function(err, result) {
+          assert.isNull(err, 'there was no error');
+          assert.equal(result.name, user1.name);
+          id = result.id;
+          
+          User.find({where:{id: id}}, function(err, result) {
+            console.log("Result find: "+JSON.stringify(result));
+            assert.lengthOf(result, 1, 'User return');
+          
+            User.destroyAll({id: id},function(err, result) {
+              console.log("Result destroyAll: "+JSON.stringify(result));
+              console.log("Error destroyAll: "+err);
+
+              User.find({where:{id: id}},function(err, result) {
+                console.log("Result find: "+JSON.stringify(result));
+                assert.isUndefined(err, 'there was no error');
+                assert.lengthOf(result, 0, 'Empty result set');
+
+                done();
+              });
+            });
           });
         });
       });
