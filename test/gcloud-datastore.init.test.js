@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var db;
 
-describe('gcloud connector should initialize', function(){
+describe('gcloud datastore connector', function(){
   before(function(){
     db = getDataSource();
   });

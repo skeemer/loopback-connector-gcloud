@@ -8,7 +8,7 @@ var Client, ACL;
 // var nock = require('nock');
 // nock.recorder.rec({output_objects: false});
 
-describe('gcloud connector can handle filters', function(){
+describe('gcloud datastore connector filters', function(){
   before(function(){
     db = getDataSource();
     Client = db.define('Client', {
@@ -26,7 +26,7 @@ describe('gcloud connector can handle filters', function(){
   beforeEach(function () {
   });
 
-  it('Clients should return empty', function(done){
+  it('Clients should return empty with a non existent filter', function(done){
     mocks.mockLogin();
     mocks.mockFindClientNoResults();
     Client.find({ where: { email: 'notExistentEmailAddress' } }, function(err, clients){
@@ -36,7 +36,7 @@ describe('gcloud connector can handle filters', function(){
     });
   });
 
-  it('It should find ACLs related to the same model after creation', function(done){
+  it('It should find entities with filters after creation in diverse situations', function(done){
     mocks.mockLogin();
     mocks.mockLogin();
     mocks.mockLogin();
