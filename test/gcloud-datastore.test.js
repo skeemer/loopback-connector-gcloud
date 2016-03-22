@@ -29,6 +29,20 @@ describe('gcloud datastore connector', function() {
   afterEach(function() {
   });
   
+  ///// DB TESTS /////
+  describe('Ping', function() {
+    mocks.mockLogin();
+    mocks.mockFindEmpty();
+    
+    it('should return no error', function(done) {
+      db.ping(function(error, result) {
+        assert.isNull(error);
+        done();
+      });
+    });
+    
+  });
+  
   ///// ACL TESTS /////
   describe('For ACLs', function() {
     mocks.mockLogin();
