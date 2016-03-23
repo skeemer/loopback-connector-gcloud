@@ -18,7 +18,7 @@ exports.start = function() {
 };
 
 ///// MOCK LOGIN /////
-exports.mockLogin = function() {  
+exports.mockLogin = function() {
   nock('https://accounts.google.com:443', {"encodedQueryParams":true})
   .post('/o/oauth2/token')
   .reply(200, {"access_token":"ya29.qQL1X9bKpDz2rc-uspPBeQZ-BN55cy5fp4CJwO7-g18yBdtoNc5S7gyGCZ2XJUPrbWE","token_type":"Bearer","expires_in":3600}, { 'content-type': 'application/json; charset=utf-8',
@@ -111,6 +111,153 @@ exports.mockDestroyUser1 = function() {
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
     date: 'Mon, 21 Mar 2016 17:46:45 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
+
+
+/////  MOCK CREATE 3 ACLS BEFORE DESTROY /////
+
+exports.mockCreate3AclsBeforeDestroy = function(){
+
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125622540a0712050a0341434c12170a0870726f7065727479220b8a01066372656174657801121a0a0a61636365737354797065220c8a010745584543555445780112140a056d6f64656c220b8a0106436c69656e7478002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c0fab308", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:46 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125422520a0712050a0341434c12150a0870726f706572747922098a010466696e647801121a0a0a61636365737354797065220c8a010745584543555445780112140a056d6f64656c220b8a0106436c69656e7478002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080fcbda109", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:46 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+
+
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125622540a0712050a0341434c12170a0870726f7065727479220b8a01067570646174657801121a0a0a61636365737354797065220c8a010745584543555445780112140a056d6f64656c220b8a0106436c69656e7478002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef8ef308", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:46 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
+
+/////  MOCK FIND ALL THE ACLS CREATED BEFORE DESTROY /////
+
+exports.mockFindAllACLSCreatedBeforeDestroy = function(){
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0007\u001a\u0005\n\u0003ACL")
+    .reply(200, "0aa703080112780a760a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c0fab30812180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010663726561746512140a056d6f64656c220b78008a0106436c69656e7412780a760a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef8ef30812180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010675706461746512140a056d6f64656c220b78008a0106436c69656e7412760a740a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080fcbda10912180a0a61636365737354797065220a8a01074558454355544512130a0870726f706572747922078a010466696e6412140a056d6f64656c220b78008a0106436c69656e7422350a33122d6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772100b120341434c1880808080fcbda1090c180020002802", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:47 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
+
+/////  MOCK DESTROY ALL ACL ENTITIES  /////
+
+exports.mockDestroyAllAclEntities1 = function(){
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0014\u0012\u000b\n\t\u0012\u0007__key__\u001a\u0005\n\u0003ACL")
+    .reply(200, "0ad401080312310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c0fab30812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef8ef30812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080fcbda10922350a33122d6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772100b120341434c1880808080fcbda1090c180020002802", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:48 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
+
+exports.mockDestroyAllAclEntities2 = function(){
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "12362a10120e0a0341434c1080808080c0fab3082a10120e0a0341434c1080808080ef8ef3082a10120e0a0341434c1080808080fcbda1092802")
+    .reply(200, "\n\u0002\b\u0015", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:49 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+}
+
+/////  MOCK FIND AFTER DESTROY ALL WITH NO FILTERS  /////
+
+exports.mockFindAfterDestroyAllWithNoFilters = function(){
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0007\u001a\u0005\n\u0003ACL")
+    .reply(200, "\n\u0006\b\u0001\"\u0000(\u0002", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Wed, 23 Mar 2016 05:48:50 GMT',
     'content-disposition': 'attachment',
     vary: 'X-Origin, Origin,Accept-Encoding',
     'content-type': 'application/x-protobuf',
