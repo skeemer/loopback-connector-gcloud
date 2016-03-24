@@ -7,47 +7,47 @@ var db;
 //var nock = require('nock');
 //nock.recorder.rec({output_objects: false});
 
-describe('gcloud datastore connector', function() {
+describe('When using the Loopback Connector for Gcloud', function() {
   before(function() {
     db = getDataSource();
-    
+
     ACL = db.define('ACL', {
       property: { type: Object, index: true },
       accessType: { type: Object, index: true }
     });
-    
+
     User = db.define('User', {
       name: { type: String, index: true },
       email: { type: String, index: true, unique: true },
       age: Number
     });
   });
-  
+
   beforeEach(function () {
   });
-  
+
   afterEach(function() {
   });
-  
+
   ///// DB TESTS /////
-  describe('Ping', function() {
-    mocks.mockLogin();
-    mocks.mockFindEmpty();
-    
+  describe('when doing a Ping', function() {
+
     it('should return no error', function(done) {
+      mocks.mockLogin();
+      mocks.mockFindEmpty();
       db.ping(function(error, result) {
         assert.isNull(error);
+
+        mocks.reset();
         done();
       });
     });
-    
+
   });
-  
+
   ///// ACL TESTS /////
-  describe('For ACLs', function() {
-    mocks.mockLogin();
-    mocks.mockFindEmpty();
-    
+  describe('when filtering a non-existent Kind', function() {
+
     it('should return an empty set', function(done) {
       var propertyFilter = {where: {and: [
           {
@@ -72,34 +72,34 @@ describe('gcloud datastore connector', function() {
           }
         ]}};
 
-      ACL.find(propertyFilter,function(err, result) { 
-        console.log("Stringify: "+JSON.stringify(result));
+      mocks.mockLogin();
+      mocks.mockFindEmpty();
+      ACL.find(propertyFilter,function(err, result) {
         assert.isUndefined(err, 'there was no error');
         assert.lengthOf(result, 0, 'Empty result set');
 
+        mocks.reset();
         done();
       });
     });
-    
+
   });
   ///// USER TESTS /////
-  describe('For User', function() {
-    describe("when creating a new one", function() {
-      mocks.mockLogin();
-      mocks.mockLogin();
-      mocks.mockCreateSuccess();
-      mocks.mockFindUser1();
-      
-      it('should create a new user', function(done) {
+    describe("when creating a new entity", function() {
+
+      it('should create it and then return the inserted entity', function(done) {
         var user1 = {
           name: "Juan Pablo",
           email: "jpdiazvaz@mcplusa.com",
           age: 25
         };
+
+        mocks.mockLogin();
+        mocks.mockLogin();
+        mocks.mockCreateSuccess();
+        mocks.mockFindUser1();
         User.create(user1, function(err, result) {
           assert.isNull(err, 'there was no error');
-          console.log("Result: "+JSON.stringify(result));
-          console.log("Result id: "+result.id);
 
           User.findById(result.id, function(err, result) {
             assert.isUndefined(err, 'there was no error');
@@ -108,22 +108,17 @@ describe('gcloud datastore connector', function() {
             assert.equal(result.email, user1.email, "user email got added correctly");
             assert.equal(result.age, user1.age, "user age got added correctly");
 
-            console.log("User result: "+JSON.stringify(result) + " err: "+err);
+            mocks.reset();
             done();
           });
         });
       });
-      
+
     });
-    
-    describe("when creating multiple users", function() {
-      mocks.mockLogin();
-      mocks.mockLogin();
-      mocks.mockLogin();
-      mocks.mockCreateSuccess();
-      mocks.mockCreateSuccess();
-      
-      it('should successfully create all of them', function(done) {
+
+    describe("when creating multiple entities", function() {
+
+      it('should successfully create all of them and return them', function(done) {
         var user1 = {
           name: "Juan Pablo",
           email: "jpdiazvaz@mcplusa.com",
@@ -134,6 +129,12 @@ describe('gcloud datastore connector', function() {
           email: "michaelcizmar@mcplusa.com",
           age: 24
         };
+
+        mocks.mockLogin();
+        mocks.mockLogin();
+        mocks.mockLogin();
+        mocks.mockCreateSuccess();
+        mocks.mockCreateSuccess();
         User.create(user1, function(err, result) {
           assert.isNull(err, 'there was no error');
           assert.equal(result.name, user1.name);
@@ -141,74 +142,45 @@ describe('gcloud datastore connector', function() {
           User.create(user2, function(err, result) {
             assert.isNull(err, 'there was no error');
             assert.equal(result.name, user2.name);
-            done();
-          });
-        });
-      });
-    });
-    
-    // FAILING: Update method not defined in the Connector
-    describe.skip("when updating a user email", function() {
-      mocks.mockLogin();
-      mocks.mockCreateSuccess();
-      
-      it('should successfully create all of them', function(done) {
 
-        var user1 = {
-          name: "Juan Pablo",
-          email: "jpdiazvaz@mcplusa.com",
-          age: 25
-        };
-        User.create(user1, function(err, result) {
-          assert.isNull(err, 'there was no error');
-          assert.equal(result.name, user1.name);
-          
-          User.updateAll({id: result.id}, {email: 'jpdiazvaz@mcplusa.cl'}, function(err, result) {
-            console.log("Result: "+JSON.stringify(result));
-            assert.equal(result.email, 'jpdiazvaz@mcplusa.cl');
-            
+            mocks.reset();
             done();
           });
         });
       });
     });
-    
+
     describe("when deleting one user", function() {
-      mocks.mockLogin();
-      mocks.mockLogin();
-      mocks.mockLogin();
-      mocks.mockCreateSuccess();
-      mocks.mockFindUser1();
-      mocks.mockDestroyUser1();
-      mocks.mockFindEmpty();
-      
-      it('should return an empty set', function(done) {
-
+      it('should not return it back when fetching all users', function(done) {
         var user1 = {
           name: "Juan Pablo",
           email: "jpdiazvaz@mcplusa.com",
           age: 25
         };
-        
         var id;
+
+        mocks.mockLogin();
+        mocks.mockCreateSuccess();
+        mocks.mockFindUsersToDelete();
+        mocks.mockDestroyUser1();
+        mocks.mockFindUsersAfterDestroy();
         User.create(user1, function(err, result) {
           assert.isNull(err, 'there was no error');
           assert.equal(result.name, user1.name);
           id = result.id;
-          
+
           User.find({where:{id: id}}, function(err, result) {
-            console.log("Result find: "+JSON.stringify(result));
+            assert.isUndefined(err, 'there was no error');
             assert.lengthOf(result, 1, 'User return');
-          
+
             User.destroyAll({id: id},function(err, result) {
-              console.log("Result destroyAll: "+JSON.stringify(result));
-              console.log("Error destroyAll: "+err);
+              assert.isNull(err, 'there was no error');
 
               User.find({where:{id: id}},function(err, result) {
-                console.log("Result find: "+JSON.stringify(result));
                 assert.isUndefined(err, 'there was no error');
                 assert.lengthOf(result, 0, 'Empty result set');
 
+                mocks.reset();
                 done();
               });
             });
@@ -216,6 +188,5 @@ describe('gcloud datastore connector', function() {
         });
       });
     });
-   
-  });
+
 });
