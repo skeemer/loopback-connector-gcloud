@@ -5,7 +5,7 @@ var mocks = require('./mocks.js');
 var db;
 
 //var nock = require('nock');
-//nock.recorder.rec({output_objects: false});
+//nock.recorder.rec({dont_print:true,output_objects: false});
 
 describe('When using the Loopback Connector for Gcloud', function() {
   before(function() {
@@ -187,6 +187,44 @@ describe('When using the Loopback Connector for Gcloud', function() {
           });
         });
       });
+    });
+
+    describe("when finding one group of ages or other", function() {
+        it('should return both groups', function(done) {
+            mocks.mockFilterByAgeOrClause();
+
+            User.create([
+                {
+                    name: 'Juan Pablo Diaz-Vaz',
+                    email: 'jpdiazvaz@mcplusa.com',
+                    age: 25
+                },
+                {
+                    name: 'Sebastian Espinosa',
+                    email: 'sespinosa@mcplusa.com',
+                    age: 25
+                },
+                {
+                    name: 'Michael Cizmar',
+                    email: 'michaelcizmar@mcplusa.com',
+                    age: 27
+                },
+                {
+                    name: 'Walter Paredes',
+                    email: 'walter.paredes@mcplusa.com',
+                    age: 26
+                }
+            ], function (err, results) {
+                assert.isNull(err, 'there was no error');
+                User.find({where: {or: [{age: 25}, {age: 27}]}}, function(err, results) {
+                    assert.isUndefined(err, 'there was no error');
+
+                    assert.lengthOf(results, 3, '3 Users comply with the filter');
+
+                    done();
+                });
+            });
+        });
     });
 
 });
