@@ -191,63 +191,6 @@ exports.mockFindAclsWithPropertyFind = function(){
     connection: 'close' });
 }
 
-/////  MOCK CREATE 3 ACLs  /////
-
-exports.mockCreate3AclsForTest = function(){
-  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125822560a0712050a0341434c12190a0870726f7065727479220d8a01087465737446696e64780112170a0a6163636573735479706522098a010474727565780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
-    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086faf608", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 15:53:10 GMT',
-    'content-disposition': 'attachment',
-    vary: 'X-Origin, Origin,Accept-Encoding',
-    'content-type': 'application/x-protobuf',
-    'x-content-type-options': 'nosniff',
-    'x-frame-options': 'SAMEORIGIN',
-    'x-xss-protection': '1; mode=block',
-    server: 'GSE',
-    'alternate-protocol': '443:quic,p=1',
-    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
-    'accept-ranges': 'none',
-    connection: 'close' });
-
-  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125b22590a0712050a0341434c121b0a0870726f7065727479220f8a010a74657374557064617465780112180a0a61636365737354797065220a8a010566616c7365780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
-    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080fca7f009", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 15:53:10 GMT',
-    'content-disposition': 'attachment',
-    vary: 'X-Origin, Origin,Accept-Encoding',
-    'content-type': 'application/x-protobuf',
-    'x-content-type-options': 'nosniff',
-    'x-frame-options': 'SAMEORIGIN',
-    'x-xss-protection': '1; mode=block',
-    server: 'GSE',
-    'alternate-protocol': '443:quic,p=1',
-    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
-    'accept-ranges': 'none',
-    connection: 'close' });
-
-  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125e225c0a0712050a0341434c121b0a0870726f7065727479220f8a010a746573744372656174657801121b0a0a61636365737354797065220d8a01086e756c6c61626c65780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
-    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809de39008", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 15:53:10 GMT',
-    'content-disposition': 'attachment',
-    vary: 'X-Origin, Origin,Accept-Encoding',
-    'content-type': 'application/x-protobuf',
-    'x-content-type-options': 'nosniff',
-    'x-frame-options': 'SAMEORIGIN',
-    'x-xss-protection': '1; mode=block',
-    server: 'GSE',
-    'alternate-protocol': '443:quic,p=1',
-    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
-    'accept-ranges': 'none',
-    connection: 'close' });
-}
 
 exports.mockCreate3Acls = function(){
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
@@ -306,15 +249,15 @@ exports.mockCreate3Acls = function(){
     connection: 'close' });
 }
 
-/////  FIND ALL ACLs BEFORE DESTROY  /////
+/////  MOCK CREATE 3 ACLs  /////
 
-exports.mockFindAllACLSCreatedBeforeDestroy = function(){
+exports.mockCreate3AclsForTest = function(){
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0007\u001a\u0005\n\u0003ACL")
-    .reply(200, "0a8d06080112740a720a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086aba00812180a0a61636365737354797065220a8a01074558454355544512130a0870726f706572747922078a010466696e6412120a056d6f64656c22098a0106436c69656e7412760a740a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086dfd10812180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010675706461746512120a056d6f64656c22098a0106436c69656e7412760a740a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0e880bf0912180a0a61636365737354797065220a8a01074558454355544512130a0870726f706572747922078a010466696e6412140a056d6f64656c220b78008a0106436c69656e7412760a740a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8b1a60a12180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010663726561746512120a056d6f64656c22098a0106436c69656e7412780a760a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809bf4b50a12180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010663726561746512140a056d6f64656c220b78008a0106436c69656e7412780a760a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8dbae0b12180a0a61636365737354797065220a8a01074558454355544512150a0870726f706572747922098a010675706461746512140a056d6f64656c220b78008a0106436c69656e7422350a33122d6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772100b120341434c18808080c0a8dbae0b0c180020002802", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125b22590a0712050a0341434c121b0a0870726f7065727479220f8a010a74657374557064617465780112180a0a61636365737354797065220a8a010566616c7365780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080efd2d209", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 14:55:36 GMT',
+    date: 'Thu, 24 Mar 2016 19:24:06 GMT',
     'content-disposition': 'attachment',
     vary: 'X-Origin, Origin,Accept-Encoding',
     'content-type': 'application/x-protobuf',
@@ -326,6 +269,49 @@ exports.mockFindAllACLSCreatedBeforeDestroy = function(){
     'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
     'accept-ranges': 'none',
     connection: 'close' });
+
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125e225c0a0712050a0341434c121b0a0870726f7065727479220f8a010a746573744372656174657801121b0a0a61636365737354797065220d8a01086e756c6c61626c65780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809fac9e08", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Thu, 24 Mar 2016 19:24:06 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+
+  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125822560a0712050a0341434c12190a0870726f7065727479220d8a01087465737446696e64780112170a0a6163636573735479706522098a010474727565780112170a056d6f64656c220e8a0109546573744d6f64656c78002802")
+    .reply(200, "0a310807122d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809bd38b0b", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    pragma: 'no-cache',
+    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+    date: 'Thu, 24 Mar 2016 19:24:06 GMT',
+    'content-disposition': 'attachment',
+    vary: 'X-Origin, Origin,Accept-Encoding',
+    'content-type': 'application/x-protobuf',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'x-xss-protection': '1; mode=block',
+    server: 'GSE',
+    'alternate-protocol': '443:quic,p=1',
+    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+    'accept-ranges': 'none',
+    connection: 'close' });
+
+}
+
+/////  FIND ALL ACLs BEFORE DESTROY  /////
+
+exports.mockFindAllACLSCreatedBeforeDestroy = function(){
+ 
 }
 
 /////  MOCK DESTROY ALL ACL ENTITIES  /////
@@ -333,10 +319,10 @@ exports.mockFindAllACLSCreatedBeforeDestroy = function(){
 exports.mockDestroyAllAclEntities = function(){
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
     .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0014\u0012\u000b\n\t\u0012\u0007__key__\u001a\u0005\n\u0003ACL")
-    .reply(200, "0aed02080312310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086aba00812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086dfd10812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0e880bf0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8b1a60a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809bf4b50a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8dbae0b22350a33122d6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772100b120341434c18808080c0a8dbae0b0c180020002802", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    .reply(200,Buffer( "0a8010080312310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809df9810812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c088830812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080808688860812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c09c920812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080efd2920812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809fac9e0812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086b5c10812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c0facb0812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086face0812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef99da0812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8dbde0812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080effde70812310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0e8c0800912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8a6870912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809bf48d0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086fa8e0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086ec970912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8cdaf0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809de3d00912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080efd2d20912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef99da0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c088fd0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080d98bff0912310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809df9810a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8a6870a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086ab900a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080efd2920a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086ec970a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086b5c10a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809de3d00a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef99da0a12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080fca7880b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080809bd38b0b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c108080808086fa8e0b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080c0a8db9e0b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080ef8ecb0b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080d9d5f60b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c10808080808688fa0b12310a2f0a2d0a1b1a19737e63656e7472616c2d73746174696f6e2d73746167696e67120e0a0341434c1080808080c088fd0b22350a33122d6a19737e63656e7472616c2d73746174696f6e2d73746167696e6772100b120341434c1880808080c088fd0b0c180020002802", 'hex'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 14:55:37 GMT',
+    date: 'Thu, 24 Mar 2016 19:24:07 GMT',
     'content-disposition': 'attachment',
     vary: 'X-Origin, Origin,Accept-Encoding',
     'content-type': 'application/x-protobuf',
@@ -348,33 +334,13 @@ exports.mockDestroyAllAclEntities = function(){
     'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
     'accept-ranges': 'none',
     connection: 'close' });
-
-  nock('https://accounts.google.com:443', {"encodedQueryParams":true})
-    .post('/o/oauth2/token', "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjZW50cmFsLXN0YXRpb24tc3RhZ2luZ0BhcHBzcG90LmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzY29wZSI6Imh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL2F1dGgvZGF0YXN0b3JlIGh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL2F1dGgvdXNlcmluZm8uZW1haWwiLCJhdWQiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvdG9rZW4iLCJleHAiOjE0NTg3NDg1MzcsImlhdCI6MTQ1ODc0NDkzN30.wfWGJGHljZopAD7tN6ndxbA-BLbvJ0Uw-JjHfgPlEhapkOPl2FNLHcBtni_YBCeOjVrMB4V6aPPsQo5-KSbq5MDK_YV75Cohv-IcBhSi30Z_VvvGUBw9SjC2FQHihtQcLIp4K7g7n6dnALCDg-2NUgMYUQReACVtu0ySene5o5VmSo-VPw028gkzMD2GivXWlalcocpnSeah9dFQ9eex724TGUDfwMJcCxLRQxLXLyU2uHBMEkHcyvxpZJB4WjTghVTSEniERrPh_R-e_3TLQPUvolqQiLe0oJfrpXLdq8BpgN3XBVwXdhvXqs0TQi3Xt3oaL8wHzZXPFwIdpL4srA")
-    .reply(200, {"access_token":"ya29.rgJ_Q2zEZJO5arpY8v_kdJ9KU_DMEg1yxj4mfGGj3iChyrFCgkXSLMA4tj1tv8-I6BE","token_type":"Bearer","expires_in":3600}, { 'content-type': 'application/json; charset=utf-8',
-    'x-content-type-options': 'nosniff',
-    'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 14:55:37 GMT',
-    'content-disposition': 'attachment; filename="json.txt"; filename*=UTF-8\'\'json.txt',
-    'set-cookie': [ 'NID=77=Fe5Hu0GHJ8Kr56UuNfQQZQX6oLKqqed3fFtBWnFMI6WY7YxBhKyqThhViYroi8dmuXTzDr2uBIgtW2UCx7N87K0iK993QZHDuqg5yllbqmXyHthvzJCEZ00Sdhdzheqb;Domain=.google.com;Path=/;Expires=Thu, 22-Sep-2016 14:55:37 GMT;HttpOnly' ],
-    p3p: 'CP="This is not a P3P policy! See https://support.google.com/accounts/answer/151657?hl=en for more info."',
-    'x-frame-options': 'SAMEORIGIN',
-    'x-xss-protection': '1; mode=block',
-    server: 'GSE',
-    'alternate-protocol': '443:quic,p=1',
-    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
-    'accept-ranges': 'none',
-    vary: 'Accept-Encoding',
-    connection: 'close' });
-
+  
   nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "126c2a10120e0a0341434c108080808086aba0082a10120e0a0341434c108080808086dfd1082a10120e0a0341434c10808080c0e880bf092a10120e0a0341434c10808080c0a8b1a60a2a10120e0a0341434c10808080809bf4b50a2a10120e0a0341434c10808080c0a8dbae0b2802")
-    .reply(200, "\n\u0002\b?", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "12be052a10120e0a0341434c10808080809df981082a10120e0a0341434c1080808080c08883082a10120e0a0341434c1080808080868886082a10120e0a0341434c1080808080c09c92082a10120e0a0341434c1080808080efd292082a10120e0a0341434c10808080809fac9e082a10120e0a0341434c108080808086b5c1082a10120e0a0341434c1080808080c0facb082a10120e0a0341434c108080808086face082a10120e0a0341434c1080808080ef99da082a10120e0a0341434c10808080c0a8dbde082a10120e0a0341434c1080808080effde7082a10120e0a0341434c10808080c0e8c080092a10120e0a0341434c10808080c0a8a687092a10120e0a0341434c10808080809bf48d092a10120e0a0341434c108080808086fa8e092a10120e0a0341434c108080808086ec97092a10120e0a0341434c10808080c0a8cdaf092a10120e0a0341434c10808080809de3d0092a10120e0a0341434c1080808080efd2d2092a10120e0a0341434c1080808080ef99da092a10120e0a0341434c1080808080c088fd092a10120e0a0341434c1080808080d98bff092a10120e0a0341434c10808080809df9810a2a10120e0a0341434c10808080c0a8a6870a2a10120e0a0341434c108080808086ab900a2a10120e0a0341434c1080808080efd2920a2a10120e0a0341434c108080808086ec970a2a10120e0a0341434c108080808086b5c10a2a10120e0a0341434c10808080809de3d00a2a10120e0a0341434c1080808080ef99da0a2a10120e0a0341434c1080808080fca7880b2a10120e0a0341434c10808080809bd38b0b2a10120e0a0341434c108080808086fa8e0b2a10120e0a0341434c10808080c0a8db9e0b2a10120e0a0341434c1080808080ef8ecb0b2a10120e0a0341434c1080808080d9d5f60b2a10120e0a0341434c10808080808688fa0b2a10120e0a0341434c1080808080c088fd0b2802")
+    .reply(200, "0a03088d04", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
     expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 14:55:38 GMT',
+    date: 'Thu, 24 Mar 2016 19:24:08 GMT',
     'content-disposition': 'attachment',
     vary: 'X-Origin, Origin,Accept-Encoding',
     'content-type': 'application/x-protobuf',
@@ -391,21 +357,21 @@ exports.mockDestroyAllAclEntities = function(){
 /////  MOCK FIND AFTER DESTROY ALL WITH NO FILTERS  /////
 
 exports.mockFindAfterDestroyAllWithNoFilters = function(){
-  nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
-    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "0a001a7c1a050a0341434c22730a710801122312210a0912075f5f6b65795f5f10051a122a10120e0a0341434c1080808080c088bd0a122312210a0912075f5f6b65795f5f10051a122a10120e0a0341434c1080808080c6c4a80a122312210a0912075f5f6b65795f5f10051a122a10120e0a0341434c1080808080ef99ea0b")
-    .reply(200, "\n\u0006\b\u0001\"\u0000(\u0002", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
-    date: 'Wed, 23 Mar 2016 15:56:20 GMT',
-    'content-disposition': 'attachment',
-    vary: 'X-Origin, Origin,Accept-Encoding',
-    'content-type': 'application/x-protobuf',
-    'x-content-type-options': 'nosniff',
-    'x-frame-options': 'SAMEORIGIN',
-    'x-xss-protection': '1; mode=block',
-    server: 'GSE',
-    'alternate-protocol': '443:quic,p=1',
-    'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
-    'accept-ranges': 'none',
-    connection: 'close' });
+ nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+  .post('/datastore/v1beta2/datasets/central-station-staging/runQuery', "\n\u0000\u001a\u0007\u001a\u0005\n\u0003ACL")
+  .reply(200, "\n\u0006\b\u0001\"\u0000(\u0002", { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+  pragma: 'no-cache',
+  expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+  date: 'Thu, 24 Mar 2016 19:24:09 GMT',
+  'content-disposition': 'attachment',
+  vary: 'X-Origin, Origin,Accept-Encoding',
+  'content-type': 'application/x-protobuf',
+  'x-content-type-options': 'nosniff',
+  'x-frame-options': 'SAMEORIGIN',
+  'x-xss-protection': '1; mode=block',
+  server: 'GSE',
+  'alternate-protocol': '443:quic,p=1',
+  'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+  'accept-ranges': 'none',
+  connection: 'close' });
 }
