@@ -8,7 +8,7 @@ var ACL, User;
 //var nock = require('nock');
 //nock.recorder.rec({output_objects: false});
 
-describe('gcloud datastore connector', function(){
+describe('When deleting entities on the Loopback Connector for Gcloud', function(){
   before(function(){
     db = getDataSource();
     ACL = db.define('ACL', {
@@ -17,8 +17,8 @@ describe('gcloud datastore connector', function(){
     });
   });
 
-  describe('destroyAll Method', function(){
-    it('should create 3 ACLs and then delete all existing ACLs', function(done){
+  describe('when creating 3 ACLs and then doing a destroyAll', function(){
+    it('should delete all existing ACLs', function(done){
       mocks.mockLogin();
       mocks.mockLogin();
       mocks.mockLogin();
