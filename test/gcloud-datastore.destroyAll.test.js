@@ -49,6 +49,7 @@ describe('gcloud datastore connector', function(){
             mocks.mockFindAfterDestroyAllWithNoFilters();
             ACL.find({}, function(err, aclsNew){
               assert.lengthOf(aclsNew, 0, 'should be empty');
+              mocks.reset();
               done();
             });
           });
