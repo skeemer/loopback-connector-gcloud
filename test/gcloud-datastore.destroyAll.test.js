@@ -5,8 +5,8 @@ var mocks = require('./mocks.js');
 var db;
 var ACL, User;
 
-// var nock = require('nock');
-// nock.recorder.rec({output_objects: false});
+//var nock = require('nock');
+//nock.recorder.rec({output_objects: false});
 
 describe('gcloud datastore connector', function(){
   before(function(){
@@ -40,11 +40,9 @@ describe('gcloud datastore connector', function(){
         }], function(err, acls){
           assert.lengthOf(acls, 3, 'created ACLs should be 3');
           assert(acls.length >= 3, 'All ACLs are more than 3');
-          mocks.mockLogin();
-          mocks.mockLogin();
           mocks.mockDestroyAllAclEntities();
           ACL.destroyAll({}, function(err){
-            assert(!(err), 'Should not have errors');
+            assert.isNull(err, 'no errors occurred');
             mocks.mockLogin();
             mocks.mockFindAfterDestroyAllWithNoFilters();
             ACL.find({}, function(err, aclsNew){
