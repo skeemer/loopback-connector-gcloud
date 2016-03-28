@@ -619,3 +619,161 @@ exports.mockFindAfterDestroyAllWithNoFilters = function(){
   'accept-ranges': 'none',
   connection: 'close' });
 }
+
+exports.mockFilterByAgeOrClause = function() {
+
+    this.mockLogin();
+    this.mockLogin();
+    this.mockLogin();
+    this.mockLogin();
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "1260225e0a0812060a0455736572121b0a046e616d6522138a010e57616c7465722050617265646573780112280a05656d61696c221f8a011a77616c7465722e70617265646573406d63706c7573612e636f6d7801120b0a036167652204101a78012802")
+    .reply(200, new Buffer('CjIIBxIuChsaGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmcSDwoEVXNlchCAgICAht+JCQ==','base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:48 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125f225d0a0812060a0455736572121b0a046e616d6522138a010e4d69636861656c2043697a6d6172780112270a05656d61696c221e8a01196d69636861656c63697a6d6172406d63706c7573612e636f6d7801120b0a036167652204101b78012802")
+    .reply(200, new Buffer('CjIIBxIuChsaGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmcSDwoEVXNlchCAgICAhvquCQ==', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:48 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "1260225e0a0812060a045573657212200a046e616d6522188a01134a75616e205061626c6f204469617a2d56617a780112230a05656d61696c221a8a01156a706469617a76617a406d63706c7573612e636f6d7801120b0a036167652204101978012802")
+    .reply(200, new Buffer('CjIIBxIuChsaGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmcSDwoEVXNlchCAgICAhoimCg==', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:48 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/commit', "125f225d0a0812060a0455736572121f0a046e616d6522178a011253656261737469616e20457370696e6f7361780112230a05656d61696c221a8a011573657370696e6f7361406d63706c7573612e636f6d7801120b0a036167652204101978012802")
+    .reply(200, new Buffer('CjIIBxIuChsaGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmcSDwoEVXNlchCAgICAxpK5CA==', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:48 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .reply(200, new Buffer('Cr0BCAESfwp9Ci4KGxoZc35jZW50cmFsLXN0YXRpb24tc3RhZ2luZxIPCgRVc2VyEICAgICG+q4JEhkKBG5hbWUiEYoBDk1pY2hhZWwgQ2l6bWFyEiUKBWVtYWlsIhyKARltaWNoYWVsY2l6bWFyQG1jcGx1c2EuY29tEgkKA2FnZSICEBsiNgo0Ei5qGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmdyEQsSBFVzZXIYgICAgIb6rgkMGAAgACgC', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:49 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .reply(200, new Buffer('CsACCAESfwp9Ci4KGxoZc35jZW50cmFsLXN0YXRpb24tc3RhZ2luZxIPCgRVc2VyEICAgICG34kJEh0KBG5hbWUiFYoBElNlYmFzdGlhbiBFc3Bpbm9zYRIhCgVlbWFpbCIYigEVc2VzcGlub3NhQG1jcGx1c2EuY29tEgkKA2FnZSICEBkSgAEKfgouChsaGXN+Y2VudHJhbC1zdGF0aW9uLXN0YWdpbmcSDwoEVXNlchCAgICAhoimChIeCgRuYW1lIhaKARNKdWFuIFBhYmxvIERpYXotVmF6EiEKBWVtYWlsIhiKARVqcGRpYXp2YXpAbWNwbHVzYS5jb20SCQoDYWdlIgIQGSI2CjQSLmoZc35jZW50cmFsLXN0YXRpb24tc3RhZ2luZ3IRCxIEVXNlchiAgICAhoimCgwYACAAKAI=', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:49 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .reply(200, new Buffer('CjwIASI2CjQSLmoZc35jZW50cmFsLXN0YXRpb24tc3RhZ2luZ3IRCxIEVXNlchiAgICAhvquCQwYACAAKAI=', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:49 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+
+    nock('https://www.googleapis.com:443', {"encodedQueryParams":true})
+    .post('/datastore/v1beta2/datasets/central-station-staging/runQuery')
+    .reply(200, new Buffer('CjwIASI2CjQSLmoZc35jZW50cmFsLXN0YXRpb24tc3RhZ2luZ3IRCxIEVXNlchiAgICAhoimCgwYACAAKAI=', 'base64'), { 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
+        pragma: 'no-cache',
+        expires: 'Fri, 01 Jan 1990 00:00:00 GMT',
+        date: 'Thu, 24 Mar 2016 19:33:49 GMT',
+        'content-disposition': 'attachment',
+        vary: 'X-Origin, Origin,Accept-Encoding',
+        'content-type': 'application/x-protobuf',
+        'x-content-type-options': 'nosniff',
+        'x-frame-options': 'SAMEORIGIN',
+        'x-xss-protection': '1; mode=block',
+        server: 'GSE',
+        'alternate-protocol': '443:quic,p=1',
+        'alt-svc': 'quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"',
+        'accept-ranges': 'none',
+        connection: 'close' });
+
+}
