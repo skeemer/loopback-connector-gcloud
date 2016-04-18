@@ -33,7 +33,7 @@ describe('When updating on the Loopback Connector for Gcloud', function() {
 */
     describe("when updating a user email", function() {
 
-      it.only('should successfully change the email', function(done) {
+      it('should successfully change the email', function(done) {
         mocks.mockUpdate1UserEmail();
         var user1 = {
           name: "Juan Pablo",
